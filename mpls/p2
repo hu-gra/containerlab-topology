@@ -1,0 +1,53 @@
+hostname P2
+ interface GigabitEthernet0/0/0/0
+ ipv4 address 10.0.1.21 255.255.255.0
+ no sh
+          
+interface GigabitEthernet0/0/0/1
+ ipv4 address 10.0.3.23 255.255.255.0
+no sh
+ 
+interface GigabitEthernet0/0/0/2
+ ipv4 address 10.0.5.25 255.255.255.0
+no sh
+ 
+interface GigabitEthernet0/0/0/3
+ ipv4 address 10.0.4.24 255.255.255.0
+no sh
+ 
+interface Lo0
+ ip addr 2.2.2.2/32
+ no sh 
+ router isis 1
+ net 49.0000.0000.0002.00
+ address-family ipv4 unicast
+  
+ interface GigabitEthernet0/0/0/0
+  point-to-point
+  address-family ipv4 unicast
+   
+  
+ interface GigabitEthernet0/0/0/1
+  point-to-point
+  address-family ipv4 unicast
+   
+          
+ interface GigabitEthernet0/0/0/2
+  point-to-point
+  address-family ipv4 unicast
+   
+  
+ interface GigabitEthernet0/0/0/3
+point-to-point
+  address-family ipv4 unicast
+   
+ int Lo0
+  passive
+  address ipv4 uni
+  
+ mpls ldp
+interface GigabitEthernet0/0/0/0
+  
+ interface GigabitEthernet0/0/0/1
+int Gi0/0/0/2
+int Gi0/0/0/3

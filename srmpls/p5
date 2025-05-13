@@ -1,0 +1,63 @@
+hostname P5
+ interface GigabitEthernet0/0/0/0
+ ipv4 address 10.0.7.53 255.255.255.0
+no sh
+          
+interface GigabitEthernet0/0/0/1
+ ipv4 address 10.0.5.52 255.255.255.0
+no sh
+ 
+interface GigabitEthernet0/0/0/2
+ ipv4 address 10.0.8.54 255.255.255.0
+no sh
+ 
+interface GigabitEthernet0/0/0/3
+ ipv4 address 10.0.10.56 255.255.255.0
+no sh
+ 
+interface Lo0
+ ip addr 5.5.5.5/32
+ no sh 
+ router isis 1
+ net 49.0000.0000.0005.00
+ address-family ipv4 uni
+ interface GigabitEthernet0/0/0/0
+  point-to-point
+  address-family ipv4 unicast
+   
+  
+ interface GigabitEthernet0/0/0/1
+  point-to-point
+  address-family ipv4 unicast
+   
+  
+ interface GigabitEthernet0/0/0/2
+  point-to-point
+  address-family ipv4 unicast
+   
+  
+ interface GigabitEthernet0/0/0/3
+  point-to-point
+  address-family ipv4 unicast
+   
+ int Lo0
+  passive
+  address ipv4 uni
+  
+ mpls ldp
+interface GigabitEthernet0/0/0/0
+  
+ interface GigabitEthernet0/0/0/1
+int Gi0/0/0/2
+int Gi0/0/0/3
+  
+ 
+ 
+ router isis 1 
+address-family ipv4 unicast
+router-id lo0
+metric-style wide level 1
+segment-routing mpls sr-prefer
+int Lo0
+address-family ipv4 uni
+prefix-sid index 5555 

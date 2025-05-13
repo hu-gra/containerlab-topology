@@ -1,0 +1,87 @@
+name: srmpls
+
+topology:
+  nodes:
+    PE1:
+      kind: cisco_xrv9k
+      image: vrnetlab/cisco_xrv9k:7.11.1
+      env:
+        VCPU: 4
+        RAM: 10000
+      startup-config: pe1
+
+    P2:
+      kind: cisco_xrv9k
+      image: vrnetlab/cisco_xrv9k:7.11.1
+      env:
+        VCPU: 4
+        RAM: 10000
+      startup-config: p2
+
+    P3:
+      kind: cisco_xrv9k
+      image: vrnetlab/cisco_xrv9k:7.11.1
+      env:
+        VCPU: 4
+        RAM: 10000
+      startup-config: p3
+
+    P4:
+      kind: cisco_xrv9k
+      image: vrnetlab/cisco_xrv9k:7.11.1
+      env:
+        VCPU: 4
+        RAM: 10000
+      startup-config: p4
+
+    P5:
+      kind: cisco_xrv9k
+      image: vrnetlab/cisco_xrv9k:7.11.1
+      env:
+        VCPU: 4
+        RAM: 10000
+      startup-config: p5
+
+    PE6:
+      kind: cisco_xrv9k
+      image: vrnetlab/cisco_xrv9k:7.11.1
+      env:
+        VCPU: 4
+        RAM: 10000
+      startup-config: pe6
+    
+    client1:
+      kind: cisco_iol
+      image: vrnetlab/cisco_iol:17.12.01
+      startup-config: client1.partial
+
+    client2:
+      kind: cisco_iol
+      image: vrnetlab/cisco_iol:17.12.01
+      startup-config: client2.partial
+
+    client3:
+      kind: cisco_iol
+      image: vrnetlab/cisco_iol:17.12.01
+      startup-config: client3.partial
+
+    client4:
+      kind: cisco_iol
+      image: vrnetlab/cisco_iol:17.12.01
+      startup-config: client4.partial
+
+  links:
+    - endpoints: ["PE1:eth3", "client1:eth1"]
+    - endpoints: ["PE1:eth4", "client2:eth1"]
+    - endpoints: ["PE1:eth1", "P2:eth1"]
+    - endpoints: ["PE1:eth2", "P3:eth1"]
+    - endpoints: ["P2:eth2", "P3:eth2"]
+    - endpoints: ["P2:eth3", "P5:eth2"]
+    - endpoints: ["P2:eth4", "P4:eth1"]
+    - endpoints: ["P3:eth3", "P4:eth2"]
+    - endpoints: ["P3:eth4", "P5:eth1"]
+    - endpoints: ["P4:eth3", "P5:eth3"]
+    - endpoints: ["P4:eth4", "PE6:eth1"]
+    - endpoints: ["P5:eth4", "PE6:eth2"]
+    - endpoints: ["PE6:eth3", "client3:eth1"]
+    - endpoints: ["PE6:eth4", "client4:eth1"]
