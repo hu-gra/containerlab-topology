@@ -2,21 +2,18 @@ hostname PE6
  interface GigabitEthernet0/0/0/0
  ipv4 address 10.0.9.64 255.255.255.0
 no sh
-          
 interface GigabitEthernet0/0/0/1
- ipv4 address 10.0.10.65 255.255.255.0
+ipv4 address 10.0.10.65 255.255.255.0
 no sh
 int Gi0/0/0/2
-
 no sh
 int Gi0/0/0/3
-
 no sh
- 
+
 interface Lo0
  ip addr 6.6.6.6/32
  no sh
- 
+root 
  router isis 1
  net 49.0000.0000.0006.00
  address-family ipv4 unicast
@@ -33,12 +30,12 @@ interface Lo0
  int Lo0
   passive
   address ipv4 uni        
-  
+root
  mpls ldp
 interface GigabitEthernet0/0/0/0
   
  interface GigabitEthernet0/0/0/1
-  
+root
  vrf Cust1
  address-family ipv4 unicast
   import route-target
@@ -53,15 +50,16 @@ vrf Cust2
  address-family ipv4 unicast
   import route-target
    10:2
-   
   export route-target
    10:2
+root
 int Gi0/0/0/2
 vrf Cust1
 ip addr 192.168.2.1 255.255.255.0
 int Gi0/0/0/3
 vrf Cust2
 ip addr 192.168.3.1 255.255.255.0 
+root
  router bgp 10
  bgp router-id 6.6.6.6
  address-family vpnv4 unicast
@@ -82,7 +80,6 @@ ip addr 192.168.3.1 255.255.255.0
   rd auto
   address-family ipv4 unicast
    redistribute connected
-   
-  
+  root
   
 

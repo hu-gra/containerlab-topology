@@ -8,15 +8,14 @@ interface GigabitEthernet0/0/0/1
  no sh
  
 int Gi0/0/0/2
-
  no sh
 int Gi0/0/0/3
- 
  no sh
 interface Lo0
  ip addr 1.1.1.1/32
  no sh
- 
+ root
+
  router isis 1
  net 49.0000.0000.0001.00
  address-family ipv4 unicast
@@ -33,14 +32,13 @@ interface Lo0
  int Lo0
   passive
   address ipv4 uni        
-  
+root
+
  mpls ldp
 interface GigabitEthernet0/0/0/0
   
  interface GigabitEthernet0/0/0/1
-  
- 
- 
+ root 
 
  vrf Cust1
  address-family ipv4 unicast
@@ -59,12 +57,16 @@ vrf Cust2
    
   export route-target
    10:2
+root
+
 int Gi0/0/0/2
 vrf Cust1
  ip addr 192.168.0.1 255.255.255.0
 int Gi0/0/0/3
 vrf Cust2
 ip addr 192.168.1.1 255.255.255.0 
+root
+
  router bgp 10
  bgp router-id 1.1.1.1
  address-family vpnv4 unicast
